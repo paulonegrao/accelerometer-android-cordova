@@ -1,0 +1,25 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-plugin-device-motion": {
+      "PACKAGE_NAME": "ca.bcit.comp2052.a00934645.cordova4"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "ca.bcit.comp2052.a00934645.cordova4"
+    },
+    "cordova-plugin-screen-orientation": {
+      "PACKAGE_NAME": "ca.bcit.comp2052.a00934645.cordova4"
+    }
+  },
+  "dependent_plugins": {
+    "es6-promise-plugin": {
+      "PACKAGE_NAME": "ca.bcit.comp2052.a00934645.cordova4"
+    }
+  }
+}

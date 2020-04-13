@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Acceleration Example</title>
+
+	<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+</head>
+
+<body>
+	<div id="accelerometer">Waiting for accelerometer...</div>
+	<canvas id="theCanvas" width="200" height="200"></canvas>
+</body>
+<script type="text/javascript">
+
+
+	function piechart(chartId, colours, angles) {
+
+		var c = document.getElementById(chartId);
+		var ctx = c.getContext("2d");
+		//var x = Math.floor(canvas.width / 2);
+		//var y = Math.floor(canvas.height / 2);
+		//var startAngle = 0.0;
+
+		/*for (var i = 0; i < colours.length; i++) {
+			drawSector(colours[i], angles[i]);
+		}*/
+		drawSector(100, 100, 30);
+
+		function drawSector(x, y, r) {
+			ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+			ctx.beginPath();
+			ctx.moveTo(x, y);
+			ctx.arc(x, y, r, 0.0, Math.PI * 2, false);
+			ctx.fillStyle = "red";
+			ctx.fill();
+			ctx.closePath();
+
+			/*context.save();
+			var endAngle = startAngle + parseFloat(angle) * Math.PI / 180;
+			context.beginPath();
+			context.moveTo(x, y);
+			context.arc(x, y, (x > y ? y : x), startAngle, endAngle, false);
+			context.fillStyle = colour;
+			context.fill();
+			context.closePath();
+			startAngle = endAngle;
+			context.restore();*/
+		}
+
+	}
+
+	piechart(
+		"theCanvas",
+		["red", "yellow", "green"],
+		[120, 120, 120]
+	);
+
+</script>
+
+</html>

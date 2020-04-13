@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Acceleration Example</title>
+
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+</head>
+<style>
+    main {
+        text-align: center;
+    }
+
+    #theCanvas {
+        background-color: rgb(18, 135, 12);
+    }
+
+    h1 {
+        color: rgb(18, 135, 12);
+        text-shadow: 1px 1px #000;
+    }
+
+    span {
+        color: rgb(249, 221, 15);
+        text-shadow: 1px 1px #000;
+    }
+</style>
+
+<body>
+    <main>
+        <div id="accelerometer">Waiting for accelerometer...</div>
+        <h1>
+            Brazilian
+            <span>
+                Accelerometer
+            </span>
+        </h1>
+        <canvas id="theCanvas" width="380" height="380"></canvas>
+    </main>
+</body>
+<script type="text/javascript">
+
+    // The watch id references the current `watchAcceleration`
+    var watchID = null;
+    var c;
+    var ctx;
+    var radius = 40;
+    var ballX = 0;
+    var dirX = 1;
+    var ballY = 0;
+    var dirY = 1;
+    var FREQUENCY = (1000 / 24)  // 1 sec has 24 frames
+    var BALL_COLOR = "#f6d831";
+
+    // Wait for device API libraries to load
+    //
+    document.addEventListener("deviceready", onDeviceReady, false);
+
+    // device APIs are available
+    //
+    function onDeviceReady() {
+        startWatch();
+    }
+
+    // Start watching the acceleration
+    //
+    function startWatch() {
+
+        c = document.getElementById("theCanvas");
+        ctx = c.getContext("2d");
+
+        // Update acceleration every 3 seconds
+        var options = { frequency: (FREQUENCY) };
+
+        watchID = navigator.accelerometer.watchAcceleration(onSuccess, onError, options);
+    }
+
+    // Stop watching the acceleration
+    //
+    function stopWatch() {
+        if (watchID) {
+            navigator.accelerometer.clearWatch(watchID);
+            watchID = null;
+        }
+    }
+
+    // onSuccess: Get a snapshot of the current acceleration
+    //
+    function onSuccess(acceleration) {
+        var element = document.getElementById('accelerometer');
+        element.innerHTML = 'Acceleration X: ' + acceleration.x.toFixed(2) + '<br />' +
+            'Acceleration Y: ' + acceleration.y.toFixed(2) + '<br />' +
+            'Acceleration Z: ' + acceleration.z.toFixed(2) + '<br />' +
+            'Timestamp: ' + acceleration.timestamp + '<br />';
+
+        ballX -= (acceleration.x * dirX);
+        ballY += (acceleration.y * dirY);
+
+        if (ballX + radius >= ctx.canvas.width) {
+            ballX = ctx.canvas.width - radius;
+            dirX *= -1; // invert direction
+        }
+        else if (ballX - radius < 0) {
+            ballX = radius;
+            dirX *= -1; // invert direction
+        }
+
+        if (ballY + radius >= ctx.canvas.height) {
+            ballY = (ctx.canvas.height - radius);
+            dirY *= -1; // invert direction
+        }
+        else if (ballY - radius < 0) {
+            ballY = radius;
+            dirY *= -1; // invert direction
+        }
+
+        drawBall(ballX, ballY, radius);
+
+    }
+
+    // onError: Failed to get the acceleration
+    //
+    function onError() {
+        alert('onError!');
+    }
+
+    function drawBall(x, y, r) {
+        ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+        ctx.beginPath();
+        ctx.moveTo(x, y);
+        ctx.arc(x, y, r, 0.0, Math.PI * 2, false);
+        ctx.fillStyle = BALL_COLOR;
+        ctx.fill();
+        ctx.closePath();
+    }
+
+</script>
+
+</html>
