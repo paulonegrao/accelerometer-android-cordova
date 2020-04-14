@@ -3,5 +3,5 @@
 ## Demo
 The image bellow is a screenshot of the gadgte being executed. Click the play button to watch a demo video with the application running in a Android emulator.
 
-[![Accelerometer Gadget](https://github.com/paulonegrao/accelerometer-android-cordova/blob/master/www/img/Accelerometer_Demo.png?raw=true)](https://youtu.be/aXmPjCLWTGo)
+[![Accelerometer Gadget](https://github.com/paulonegrao/accelerometer-android-cordova/blob/master/www/img/Accelerometer_Demo.png?raw=true)]{:height="50%" width="50%"}(https://youtu.be/aXmPjCLWTGo)
 
