@@ -4,5 +4,6 @@ This project uses Apache Cordova platform to build a gravity oriented bouncing b
 ## Demo
 The image bellow is a screenshot of the gadgte being executed. Click the play button to watch a demo video with the application running in a Android emulator.
 
+<p align="center">
 [![Accelerometer Gadget](https://github.com/paulonegrao/accelerometer-android-cordova/blob/master/www/img/Accelerometer_Demo.png?raw=true&s=200)](https://youtu.be/aXmPjCLWTGo)
-
+</p>
